@@ -1,0 +1,16 @@
+{% extends 'includes/master.twig' %}
+
+{% block content %}
+    <div class="row">
+    {% for room in rooms %}
+        <div class="col s12">
+            <p class="margintop30 blue-text text-darken-2"><a href="{{base_url ~ room.room_id}}">{{base_url ~ room.room_id}}</a></p>
+            {% for user in room.users %}
+                <p class="grey-text text-darken-2 margin0">{{user.uuid}} : {{user.display_name ? user.display_name : 'Guest' }} : {{user.status ? 'online' : 'offline' }}</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="grey-text text-darken-2">No rooms</p>
+    {% endfor %}
+    </div>
+{% endblock %}

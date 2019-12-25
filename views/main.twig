@@ -1,0 +1,297 @@
+<div class="row hide margin0 padding0 main-screen">
+    <div class="col padding0 s8">
+        <div class="row margin0 padding0" style="position: relative;">
+            <div class="toolbar center">
+                <div class="control control-audio">
+                    {# <a class="waves-effect waves-light btn mute">
+                        <i class="material-icons left">mic</i>Mute</a>
+                    <a class="waves-effect waves-light btn unmute hide">
+                        <i class="material-icons left">mic_off</i>Unmute</a> #}
+                    <button class="waves-effect waves-light btn mute castr-control-button">
+                        <i class="material-icons left">mic</i><span>Mute</span></button>
+                    <button class="waves-effect waves-light btn unmute hide castr-control-button dis">
+                        <i class="material-icons left">mic_off</i><span>Unmute</span></button>
+                </div>
+                <div class="control control-video">
+                    {# <a class="waves-effect waves-light btn stop">
+                        <i class="material-icons left">videocam</i>Stop Cam</a>
+                    <a class="waves-effect waves-light btn start hide">
+                        <i class="material-icons left">videocam_off</i>Start Cam</a> #}
+                    <button class="waves-effect waves-light btn stop castr-control-button">
+                        <i class="material-icons left">videocam</i><span>Stop Cam</span></button>
+                    <button class="waves-effect waves-light btn start hide castr-control-button dis">
+                        <i class="material-icons left">videocam_off</i><span>Start Cam</span></button>
+                </div>
+                <div class="control control-setting">
+                    {# <a class="waves-effect waves-light btn modal-trigger" href="#settings-modal">
+                        <i class="material-icons left">settings</i>Settings</a> #}
+                    <button class="waves-effect waves-light btn modal-trigger castr-control-button" href="#settings-modal">
+                        <i class="material-icons left">settings</i><span>Settings</span></button>
+                </div>
+                <div class="control control-screenshare">
+                    {# <a class="waves-effect waves-light btn modal-trigger" href="#settings-modal">
+                        <i class="material-icons left">settings</i>Settings</a> #}
+                    <button class="waves-effect waves-light btn castr-control-button" style="width: 90px !important;">
+                        <i class="material-icons left">screen_share</i><span>Screen Share</span></button>
+                </div>
+            {% if is_owner %}
+                <div class="control control-invite">
+                    {# <a class="waves-effect waves-light btn modal-trigger" href="#invite-modal" onclick="$('.copy-link').html('Copy to Clipboard')">
+                        <i class="material-icons left">group_add</i>Invite</a> #}
+                    <button class="waves-effect waves-light btn modal-trigger castr-control-button" href="#invite-modal" onclick="$('.copy-link').html('Copy to Clipboard')">
+                        <i class="material-icons left">group_add</i><span>Invite</span></button>
+                </div>
+                <div class="control control-clear">
+                    {# <a class="waves-effect waves-light btn red">
+                        <i class="material-icons left">clear_all</i>Clear Scene</a> #}
+                    <button class="waves-effect waves-light btn modal-trigger castr-control-button dis">
+                        <i class="material-icons left">clear_all</i><span>Clear</span></button>
+                </div>
+                <div class="control control-leave">
+                    {# <a class="waves-effect waves-light btn red">
+                        <i class="material-icons left">highlight_off</i>Leave</a> #}
+                    <button class="waves-effect waves-light btn modal-trigger castr-control-button dis">
+                        <i class="material-icons left">highlight_off</i><span>Leave</span></button>
+                </div>
+            {% endif %}
+            </div>
+            <div class="col s12 padding10" style="height: calc(100% - 210px);">
+                <div id="scene-container">
+                    <div id="scene-wrapper">
+                        <img id="scene-background" src="/img/background/default.png" draggable="false" style="position: absolute; left:0; top:0; width: 100%; height: 100%;"></img>
+                        <div id="scene-content"></div>
+                        <div id="scene-assets" style="display: none;">
+                            <div class="banner asset-banner">
+                                <p class="f600 margin0" style="font-size: 20px; color: #2196f3">Hello World</p>
+                            </div>
+                        </div>
+                        <img id="logo" src="/img/logo/default.png">
+                        <video id="present" src="/vid/present/default.mp4" style="display: none; position: absolute; left:0; top:0; width: 100%; height: 100%;"></video>
+                    </div>
+                </div>
+                {% if is_owner %}
+                <div class="scene-options">
+                    <a class="waves-effect waves-teal btn-flat layout-option selected" data-option="1" style="padding-top: 5px;">
+                        <i class="material-icons object" style="font-size: 24px; line-height: 24px;">person</i>
+                    </a>
+                    <a class="waves-effect waves-teal btn-flat layout-option" data-option="2" style="padding: 0; padding-top: 5px;">
+                        <i class="material-icons object" style="font-size: 24px; line-height: 24px;">person</i>
+                        <i class="material-icons object" style="font-size: 24px; line-height: 24px;">person</i>
+                    </a>
+                    <a class="waves-effect waves-teal btn-flat layout-option" data-option="3" style="padding: 0; padding-top: 3px;">
+                        <i class="material-icons object" style="font-size: 18px; line-height: 18px; padding: 3px; background-color: #ddd; border-radius: 3px;">person</i>
+                        <i class="material-icons object" style="font-size: 18px; line-height: 18px; padding: 3px; background-color: #ddd; border-radius: 3px;">person</i>
+                    </a>
+                    <a class="waves-effect waves-teal btn-flat layout-option" data-option="4" style="padding: 0; padding-top: 3px;">
+                        <i class="material-icons object" style="font-size: 18px; line-height: 18px; padding: 3px;">person</i>
+                        <div class="object-div" style="width: 24px; height: 18px; border-radius: 3px; display: inline-block"></div>
+                    </a>
+                    <a class="waves-effect waves-teal btn-flat layout-option" data-option="5" style="padding: 0; padding-top: 3px;">
+                        <div class="object-div" style="width: 45px; height: 28px; border-radius: 3px; display: inline-block"></div>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col s12" style="height: 130px;">
+                <div class="previews" id="userprevs"></div>
+                <div class="previews" id="userscreenprevs"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col s4 padding0">
+        <div class="col side-panel-container padding10">
+            {% if is_owner %}
+            <div class="side-panel comments" style="display: none;">
+                <p style="color: rgb(80, 88, 104); font-size: 12px; margin-top: 5px;">
+                    When streaming to a custom destination, BroadCastr won't be able to show viewer comments. To show viewer comments, connect with Facebook or YouTube. Full integration with other platforms may be added in the future!
+                </p>
+            </div>
+            <div class="side-panel banner">
+                <div class="banner-list">
+                    <div class="banner-item banner-item-template">
+                        <div class="banner-item-normal">
+                            <p class="margin0"></p>
+                            <div class="banner-item-options">
+                                <div class="center-options">
+                                    <i class="pointer material-icons banner-item-option-add">add_circle_outline</i>
+                                    <i class="pointer white-text material-icons banner-item-option-remove">remove_circle_outline</i>
+                                </div>
+                                <div class="corner-options">
+                                    <i class="pointer material-icons banner-item-option-edit">edit</i>
+                                    <i class="pointer material-icons banner-item-option-delete">delete</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-item-update">
+                            <textarea class="materialize-textarea banner-update-content" placeholder="Please input banner content"> </textarea>
+                            <a class="waves-effect waves-light btn blue banner-update">Update</a>
+                            <a class="waves-effect waves-light btn red banner-cancel">Cancel</a>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="add-banner">
+                    <div class="add-banner-title pointer">
+                        + Add a banner
+                    </div>
+                    <div class="add-banner-input">
+                        <textarea class="materialize-textarea" id="banner-input" placeholder="Please input banner content"> </textarea>
+                        <button class="waves-effect waves-light btn blue banner-add right" style="font-size: 13px; text-transform: capitalize;">Add Banner</button>
+                        <a class="waves-effect waves-light btn btn-flat banner-cancel right"><i class="material-icons">close</i></a>                            
+                    </div>
+                </div>
+            </div>
+            <div class="side-panel brands" style="display: none;">
+                <div class="row">
+                    <div class="col s12">
+                        <p class="brands-title">Banner background color</p>
+                        <input type="text" class="color-picker" data-key="bg_color" value="#ffffff">
+                    </div>
+                    <div class="col s12">
+                        <p class="brands-title">Banner text color</p>
+                        <input type="text" class="color-picker" data-key="text_color" value="#2196f3">
+                    </div>
+                    <div class="col s12">
+                        <p class="brands-title">Background</p>
+                        <div class="background-images">
+                            <div class="background-image selected">
+                                <img src="/img/background/default.png" style="width: 100%; height: 100%;">
+                                <div class="background-image-options">
+                                    <i class="material-icons background-add" style="color: white;">add_circle_outline</i>
+                                    <i class="material-icons background-remove" style="color: white;">remove_circle_outline</i>
+                                </div>
+                            </div>
+                            <div class="background-image background-image-add pointer">
+                                <div class="none" style="width: 100%; height: 100%; position: relative;" onclick="$('#background-file').click()">
+                                    <i class="material-icons" style="color: rgb(5, 101, 157); left: 50%; position: relative; transform: translate(-50%, -50%); top: 50%;">add</i>
+                                </div>
+                                <form action="/upload" method="post" encType="multipart/form-data" id="background-file-form" style="display: none;">
+                                    <input type="file" name="file" id="background-file" accept=".png,.jpeg,.jpg">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <p class="brands-title">Logo</p>
+                        <div class="logo-images">
+                            <div class="logo-image selected">
+                                <img src="/img/logo/default.png" style="width: 100%; height: 100%;">
+                                <div class="logo-image-options">
+                                    <i class="material-icons logo-add" style="color: white;">add_circle_outline</i>
+                                    <i class="material-icons logo-remove" style="color: white;">remove_circle_outline</i>
+                                </div>
+                            </div>
+                            <div class="logo-image logo-image-add pointer">
+                                <div class="none" style="width: 100%; height: 100%; position: relative;" onclick="$('#logo-file').click()">
+                                    <i class="material-icons" style="color: rgb(5, 101, 157); left: 50%; position: relative; transform: translate(-50%, -50%); top: 50%;">add</i>
+                                </div>
+                                <form action="/upload" method="post" encType="multipart/form-data" id="logo-file-form" style="display: none;">
+                                    <input type="file" name="file" id="logo-file" accept=".png,.jpeg,.jpg">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <p class="brands-title">Video</p>
+                        <div class="present-videos">
+                            <div class="present-video">
+                                <video src="/vid/present/default.mp4" style="width: 100%; height: 100%;"></video>
+                                <div class="present-video-options">
+                                    <i class="material-icons present-add" style="color: white;">add_circle_outline</i>
+                                    <i class="material-icons present-remove" style="color: white;">remove_circle_outline</i>
+                                </div>
+                            </div>
+                            <div class="present-video present-video-add pointer">
+                                <div class="none" style="width: 100%; height: 100%; position: relative;" onclick="$('#present-file').click()">
+                                    <i class="material-icons" style="color: rgb(5, 101, 157); left: 50%; position: relative; transform: translate(-50%, -50%); top: 50%;">add</i>
+                                </div>
+                                <form action="/upload" method="post" encType="multipart/form-data" id="present-file-form" style="display: none;">
+                                    <input type="file" name="file" id="present-file" accept=".mp4">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <p class="brands-title">Display names</p>
+                        <div class="switch">
+                            <label>
+                            Off
+                            <input type="checkbox" class="show_names" checked="checked">
+                            <span class="lever"></span>
+                            On
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="side-panel chat" style="{{ is_owner ? 'display: none;' : '' }}">
+                <ul class="message-list">
+                    <li class="message-item-sent-template" style="display: none;">
+                        <div class="message-item-container">
+                            <p class="message-item-content">
+                                sample
+                            </p>
+                        </div>
+                    </li>
+                    <li class="message-item-receive-template" style="display: none;">
+                        <p class="message-item-author">bbb</p>
+                        <div class="message-item-container">
+                            <p class="message-item-content">
+                                sample
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="add-message">
+                    <textarea class="materialize-textarea" id="chat-input" placeholder="Chat privately with your guests"></textarea>
+                    <a class="waves-effect waves-light btn blue chat-send">Send</a>
+                </div>
+            </div>
+        </div>
+        <div class="col side-bar">
+            {% if is_owner %}
+            <div class="side-bar-item" data-target="comments">
+                <i class="material-icons">mode_comment</i>
+                <p class="margin0">Comments</p>
+            </div>
+            <div class="side-bar-item selected" data-target="banner">
+                <i class="material-icons">call_to_action</i>
+                <p class="margin0">Banners</p>
+            </div>
+            <div class="side-bar-item" data-target="brands">
+                <i class="material-icons">color_lens</i>
+                <p class="margin0">Brands</p>
+            </div>
+            {% endif %}
+            <div class="side-bar-item {{ is_owner ? '' : 'selected'}} chat" data-target="chat" style="position: relative;">
+                <i class="material-icons">message</i>
+                <p class="message-count" style="display: none;">0</p>
+                <p class="margin0">Chat</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if is_owner %}
+<div class="modal" id="invite-modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12 center">
+                <h4>Share the guest link</h4>
+            </div>
+            <div class="col s12 margintop10">
+                <p style="font-size: 13px;">Send this link to your guests to invite them to the broadcast studio.</p>
+            </div>
+            <div class="input-field col s12 margintop0">
+                <input id="copy_link" type="text" value=" {{ base_url ~ room_id }} ">
+            </div>
+            <div class="col s12 center">
+                <button class="waves-effect waves-light btn copy-link castr-button" style="width: 100%;" onclick="$(this).html('Copied!'); clipboard.writeText('{{ base_url ~ room_id }}');">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat" href="#!">Close</a>
+    </div>
+</div>
+{% endif %}

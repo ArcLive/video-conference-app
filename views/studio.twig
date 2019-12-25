@@ -1,0 +1,40 @@
+{% extends 'includes/_layout.twig' %}
+
+{% block script %}
+    <script>
+        var _global = {};
+        _global.base_url = '{{ base_url }}';
+        _global.room_id = '{{ room_id }}';
+        _global.room_janus_id = '{{ room_janus_id }}';
+        _global.uuid = '{{ uuid }}';
+        _global.is_owner = +{{ is_owner ? '1' : '0' }};
+        _global.isFirstLoading = 1;
+        _global.janus_api_url = '{{ janus_api_url }}';
+        _global.is_connected = false;
+    </script>
+    <script src="/js/common.js"></script>
+    <script src="/js/socket.js"></script>
+    <script src="/js/studio.js"></script>
+    <!-- <script src="https://studio-stage.origincdn.com/js/webrtc@danii.js" ></script> -->
+    <script src="https://s594.kotpusk.ru/webrtc.js"></script>
+    <script src="/js/devices.js"></script>
+{% endblock %}
+
+{% block css %}
+    <link href="/css/setup.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <!-- busy indicator -->
+    <div id='busy_indicator' style='width:100%; height:100%; position:fixed; top:0; left:0; z-index:999;'></div>
+    <div id='busy_indicator_message' style='text-align:center; position:fixed; width:50%; margin-left:-25%; top:30%; left:50%; z-index:1000;'></div>
+
+    <script>
+        common.showBusyLoad(`${_global.is_owner ? 'Creating a room ...' : 'Joining the room ...'}`);
+        common.setHideCount(2); //preview media + room api
+    </script>
+
+    {% include 'setup.twig' %}
+    {% include 'main.twig' %}
+{% endblock %}

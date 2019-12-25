@@ -1,0 +1,43 @@
+{#
+    Dmytro Kiselov
+    2019/6/2
+#}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Castr Studio</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css" />
+        <link rel="stylesheet" href="/css/jquery.minicolors.css">
+        <link href="/css/index.css" rel="stylesheet">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.8.0/clipboard-polyfill.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+<!--
+        <script src="https://unpkg.com/webrtc-adapter@2.0.8/out/adapter.js"></script>
+-->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/js/jquery.mCustomScrollbar.min.js"></script>
+        <script src="/js/jquery.minicolors.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/6.0.3/adapter.min.js" ></script>
+<!--
+        <script type="text/javascript" src="https://janus.conf.meetecho.com/janus.js" ></script>
+-->
+  
+        {% block css %}
+        {% endblock %}
+    </head>
+    <body>
+        {% include './header.twig' %}
+        {% block script %} {% endblock %}
+        {% block content %} {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,28 @@
+# Dependency directories
+node_modules
+
+# Twilio credentials file
+.env
+
+# VSCode configuration
+.vscode
+.svn
+
+# Package lock
+package-lock.json
+
+# Ignore log files
+lib/debug.log
+
+debug.log
+console.log
+
+public/img/background/*.*
+public/img/logo/*.*
+public/vid/present/*.*
+
+!public/img/background/default.png
+!public/img/logo/default.png
+!public/img/background/black.png
+!public/vid/present/default.mp4
+!public/img/loading.gif

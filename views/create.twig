@@ -1,0 +1,37 @@
+{#
+    Dmytro Kiselov
+    Updated 2019/6/2
+#}
+
+{% extends 'includes/master.twig' %}
+
+{% block content %}
+    <form action="{{ base_url ~ room_id }}" method="post">
+        <div class="row margintop100" style="max-width: 440px;">
+            <div class="col s12">
+                <h5 class="grey-text text-darken-2 center">Welcome to <strong>castr</strong> studio</h5>
+            </div>
+            <div class="input-field col s12 margintop30">
+                <input placeholder="Room Name" id="room_name" name="room_name" type="text" class="validate">
+                <label for="room_name">Room Name</label>
+            </div>
+            <div class="col s12 margintop30">
+                <button class="waves-effect waves-light btn btn-flat castr-button" style="width: 100%; text-transform: capitalize;" id="create">Create Room</button>
+            </div>
+            <div class="col s12 margintop30">
+                <input disabled value="{{ base_url ~ room_id }}" type="text" />
+            </div>
+        </div>
+    </form>
+    <script>
+        $('#create').on('click', function(e) {
+            e.preventDefault();
+            if (!$('#room_name').val()) {
+                alert("You should input Room Name");
+                return;
+            }
+            
+            $('form').submit();
+        });
+    </script>
+{% endblock %}

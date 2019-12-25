@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Castr Studio</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/css/jquery.minicolors.css">
+        <link href="/css/index.css" rel="stylesheet">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.8.0/clipboard-polyfill.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+        <script src="/js/jquery.minicolors.min.js"></script>
+  
+        {% block css %}
+        {% endblock %}
+
+        <script>
+            const socket = io('{{ base_url }}');
+            var _communicator = {
+                socket_join: new Promise(function(resolve) {
+                    socket.on('connect', function() {
+                        resolve();
+                    });
+                })
+            };
+
+            {# socket.on('connect', function() {
+                _communicator.socket_join.resolve();
+                //socket_join(socket);
+            }); #}
+
+            {# _communicator.showBusyLoad = function(message) {
+                if (!message)
+                    message = 'Please wait...';
+                
+                if (!$('busy_indicator').length) {
+                    var busy_indicator = $(`<DIV id='busy_indicator' style='width:100%; height:100%; position:fixed; top:0; left:0; z-index:999;'></div>`)[0];
+                    var busy_indicator_message = $(`<div id='busy_indicator_message' style='text-align:center; position:fixed; width:50%; margin-left:-25%; top:30%; left:50%; z-index:1000;'>${message}</div>`)[0];
+                    document.body.insertBefore(busy_indicator_message, document.body.childNodes[0]);
+                    document.body.insertBefore(busy_indicator, document.body.childNodes[0]);
+                }
+
+                $('#busy_indicator').show();
+                $('#busy_indicator_message').show();
+            }
+
+            _communicator.hideBusyLoad = function () {
+                $('#busy_indicator').hide();
+                $('#busy_indicator_message').hide();
+            } #}
+        </script>
+    </head>
+    <body>
+        {% include './header.twig' %}
+
+        {% block content %} {% endblock %}
+
+        <script src="/js/index.js"></script>
+        <script src="/js/socket.js"></script>
+        {% block script %} {% endblock %}
+
+        <script>
+            $(function() {
+                $('.modal').modal();
+                $('select').formSelect();
+            });
+        </script>
+    </body>
+</html>

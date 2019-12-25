@@ -1,0 +1,84 @@
+<div class="row setup-screen">
+    <div class="col s12 center">
+        <div class="container setup-panel">
+            <div class="row">
+                <div class="col s12 marginbottom20 padding0">
+                    <h5 class="grey-text text-darken-2">Let's check your camera and mic</h5>
+                </div>
+                <div class="col s9 padding0">
+                    <div class="video-panel" style="position: relative;">
+                        <video autoplay id="video-preview"></video>
+                        <p class="white-text margin0 f600" id="preview_display_name" style="padding-left: 5px; padding-right: 5px; font-size: 15px; height: 24px; background-color: #222; position: absolute; bottom: 0px; left: 0px;"></p>
+                    </div>
+                </div>
+                <div class="col s3 padding0">
+                    <div class="mic-panel center">
+                        <i class="material-icons grey-text">mic</i>
+                        <div class="audio-preview x-mid">
+                            <div id="audio-volume"></div>
+                        </div>
+                        <p class="margin0 margintop5 castr-green-text f600" id="audio-status">Checking...</p>
+                        <p class="margin0 margintop10 truncate grey-text text-darken-1" id="audio-device">Device name</p>
+                    </div>
+                </div>
+                <div class="col s12 center margintop30 padding0">
+                    <div class="control control-audio">
+                        <button class="waves-effect waves-light btn mute castr-control-button">
+                            <i class="material-icons left">mic</i><span>Mute</span></button>
+                        <button class="waves-effect waves-light btn unmute hide castr-control-button dis">
+                            <i class="material-icons left">mic_off</i><span>Unmute</span></button>
+                    </div>
+                    <div class="control control-video">
+                        <button class="waves-effect waves-light btn stop castr-control-button">
+                            <i class="material-icons left">videocam</i><span>Stop Cam</span></button>
+                        <button class="waves-effect waves-light btn start hide castr-control-button dis">
+                            <i class="material-icons left">videocam_off</i><span>Start Cam</span></button>
+                    </div>
+                    <div class="control setting">
+                        <button class="waves-effect waves-light btn modal-trigger castr-control-button" href="#settings-modal">
+                            <i class="material-icons left">settings</i><span>Settings</span></button>
+                    </div>
+                </div>
+                <div class="input-field col s12 margintop30 padding0">
+                    <input id="display-name" type="text">
+                    <label for="display-name">Display Name</label>
+                </div>
+                <div class="col s12 center padding0">
+                    <button class="waves-effect waves-light btn btn-flat castr-button" style="width: 100%;" onclick="studio.enterStudio()">Enter Studio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="settings-modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12 center">
+                <h4>Settings</h4>
+            </div>
+            <div class="col s12 margintop20">
+                <label>Camera</label>
+                <select class="browser-default" id="videoinput">
+                    <option></option>
+                </select>
+            </div>
+            <div class="col s12 margintop20">
+                <audio class="hide" id="audioinputpreview"></audio>
+                <label>Mic</label>
+                <select class="browser-default" id="audioinput">
+                    <option></option>
+                </select>
+            </div>
+            <div class="col s12 margintop20">
+                <label>Speaker</label>
+                <select class="browser-default" id="audiooutput">
+                    <option></option>
+                </select>                
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat" href="#!" id="applydevices">Apply</a>
+    </div>
+</div>

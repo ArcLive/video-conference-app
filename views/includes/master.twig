@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Castr Studio</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/css/index.css" rel="stylesheet">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js"></script>
+
+        {% block css %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="header">
+            <a class="cursor" href="/create"><div class="cursor margin0 left-align blue-text text-darken-2 f600" style="padding-left: 30px;">
+                <img src="/img/logo.png" style="height: 48px; position: relative; top: 5px;"><span style="position: relative; top: -10px; left: 0px;">castr <span class="f400">studio</span></span>
+            </div></a>
+        </div>
+        {% block content %} {% endblock %}
+        {% block script %} {% endblock %}
+        <script>
+            $(function() {
+                $('.modal').modal();
+                $('select').formSelect();
+            });
+        </script>
+    </body>
+</html>
